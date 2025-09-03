@@ -1,21 +1,18 @@
-  # CMPS 6610 Problem Set 01
+# CMPS 6610 Problem Set 01
 ## Answers
-
-**Name:**_________________________
-**Name:**_________________________
-
+**Name:** 
 
 Place all written answers from `assignment-01.md` here for easier grading.
 
 1. **Asymptotic notation**
 
-  - 1b    
+  - 1b  
  
-  - 1c
+  - 1c  
 
-  - 1d
+  - 1d  
 
-  - 1e
+  - 1e  
 
   - 1f
 
