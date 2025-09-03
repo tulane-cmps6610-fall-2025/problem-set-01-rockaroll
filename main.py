@@ -4,16 +4,21 @@ See problemset-01.pdf for details.
 """
 
 def foo(x,y):
+    ##Returns y if x is 0
     if(x==0):
         return y 
+    ##Returns x if y is 0
     elif(y==0):
         return x
+    ##This will ensure that the largest number will be returned
     else:
         a,b=min(x,y),max(x,y)
         c=foo(b,b%a) 
         return c
 
 def longest_run(mylist, key):
+    '''Returns the longest contigous sequence of a chosen number 
+    within an array iteratively.'''
     counter=0
     countarr=[]
     for i in mylist:
@@ -39,8 +44,11 @@ class Result:
     def __repr__(self):
         return('longest_size=%d left_size=%d right_size=%d is_entire_range=%s' %
               (self.longest_size, self.left_size, self.right_size, self.is_entire_range))
-        
+##Recursive version of longest run sequence        
 def longest_run_recursive(mylist, key):
+    '''Returns the longest contigous sequence of a chosen number 
+    within an array using the divide and conquer method.'''
+    ##Base Cases which will return the outputs when for arrays 
     if(len(mylist)==1 and (key in mylist)):
         return Result(1,1,1,True)
     elif(len(mylist)==1 and (key not in mylist)):
@@ -48,11 +56,14 @@ def longest_run_recursive(mylist, key):
     elif(len(mylist)==0):
         return Result(0,0,0,False)
     elif(len(mylist)>1):
+        ##Dividing the lists into two halves
         left=mylist[:int(len(mylist)//2)]
         right=mylist[int(len(mylist)//2):]
+        ##Ensuring the recursion works on both halves of the array 
         cleft=longest_run_recursive(left,key)
         cright=longest_run_recursive(right,key)
         is_entire=cleft.is_entire_range and cright.is_entire_range
+        ##This section ensures that the left branch of the trees size is accounted for
         if cleft.is_entire_range==True:
             if right and right[0]==key:
                 left_size=cleft.left_size+cright.left_size 
@@ -60,6 +71,7 @@ def longest_run_recursive(mylist, key):
                 left_size=cleft.left_size
         else:
             left_size=cleft.left_size
+        ##This calculates the size of the right branch of a tree
         if cright.is_entire_range==True:
             if left and left[-1]==key:
                 right_size=cleft.right_size+cright.right_size 
@@ -67,6 +79,7 @@ def longest_run_recursive(mylist, key):
                 right_size=cright.right_size 
         else:
             right_size=cright.right_size
+        ##This accounts for any numbers between the left and right branches
         cross=0
         if left and right and left[-1]==key and right[0]==key:
             cross=cleft.right_size+cright.left_size
