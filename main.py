@@ -89,6 +89,7 @@ def longest_run_recursive(mylist, key):
 def test_longest_run():
     assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3
     assert longest_run([-1,-1,-1,-1,0,2,3,5,6,1,3,1,9,9,9,10,9,9,9,9,12,12],-1) == 4
+    ## For longest_run_recursive to return the longest sequence run it as longest_run_recursive().longest_size 
     assert longest_run_recursive([-1,-1,-1,-1,0,2,3,5,6,1,3,1,9,9,9,10,9,9,9,9,12,12],9).longest_size == 4
 
 test_longest_run()
